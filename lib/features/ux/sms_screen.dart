@@ -103,7 +103,7 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
                             return Card(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 6),
-                              elevation: 2,
+                              elevation: 1,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -114,8 +114,8 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
                                   children: [
                                     Text(msg.body ?? AppConstants.noMessage,
                                         style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold)),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400)),
                                     const SizedBox(height: 8),
                                     Text('${AppConstants.from} ${msg.address}',
                                         style: const TextStyle(
