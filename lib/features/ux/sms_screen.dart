@@ -117,13 +117,13 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 8),
-                                    Text(' ${msg.address}',
+                                    Text('${AppConstants.from} ${msg.address}',
                                         style: const TextStyle(
                                             color: Colors.blueGrey,
                                             fontSize: 14)),
                                     const SizedBox(height: 4),
                                     Text(
-                                        '${AppConstants.from} ${formatMessageTime(msg.date)}',
+                                        '${AppConstants.sentAT} ${formatMessageTime(msg.date)}',
                                         style: const TextStyle(
                                             color: Colors.grey, fontSize: 12)),
                                   ],
