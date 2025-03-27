@@ -6,6 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:sms/app/constants.dart';
 import 'package:sms/features/logic/sms_bloc.dart';
 import 'package:sms/features/logic/sms_state.dart';
+import 'package:sms/shared/utils/Utils.dart';
 
 import '../logic/sms_event.dart';
 
@@ -56,26 +57,25 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: const Text(AppConstants.permissionRequired),
-                        content: const Text(
-                            'SMS permission is required to read messages. Please grant permission from settings.'),
+                        content: const Text(AppConstants.smsPermissionIsRequiredToRead),
                         actions: [
                           TextButton(
                             onPressed: () async {
                               Navigator.of(context).pop();
                               await openAppSettings();
                             },
-                            child: const Text('Open Settings'),
+                            child: const Text(AppConstants.openSettings),
                           ),
                           TextButton(
                             onPressed: () => Navigator.of(context).pop(),
-                            child: const Text('Cancel'),
+                            child: const Text(AppConstants.cancel),
                           ),
                         ],
                       );
                     },
                   );
                 },
-                child: const Text('Permission Denied. Tap to Resolve'),
+                child: const Text(AppConstants.permissionDeniedTapToEnable),
               ),
             );
           }
@@ -87,7 +87,7 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
                   child: TextField(
                     controller: senderController,
                     decoration: const InputDecoration(
-                        labelText: 'Enter Sender ID',
+                        labelText: AppConstants.enterSenderId,
                         border: OutlineInputBorder()),
                     onChanged: (value) =>
                         context.read<SmsBloc>().add(FilterSmsEvent(value)),
@@ -95,7 +95,7 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
                 ),
                 Expanded(
                   child: state.messages.isEmpty
-                      ? const Center(child: Text('No Messages'))
+                      ? const Center(child: Text(AppConstants.noMessages))
                       : ListView.builder(
                           itemCount: state.messages.length,
                           itemBuilder: (context, index) {
@@ -112,17 +112,18 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(msg.body ?? 'No Message',
+                                    Text(msg.body ?? AppConstants.noMessage,
                                         style: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold)),
                                     const SizedBox(height: 8),
-                                    Text('From: ${msg.address}',
+                                    Text(' ${msg.address}',
                                         style: const TextStyle(
                                             color: Colors.blueGrey,
                                             fontSize: 14)),
                                     const SizedBox(height: 4),
-                                    Text('Sent At: ${msg.date}',
+                                    Text(
+                                        '${AppConstants.from} ${formatMessageTime(msg.date)}',
                                         style: const TextStyle(
                                             color: Colors.grey, fontSize: 12)),
                                   ],
