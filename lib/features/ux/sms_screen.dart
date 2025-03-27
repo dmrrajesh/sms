@@ -47,7 +47,6 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
       ),
       body: BlocBuilder<SmsBloc, SmsState>(
         builder: (context, state) {
-          log("------ EMIT STATE : $state}");
           if (state is PermissionDeniedState) {
             return Center(
               child: ElevatedButton(
@@ -81,7 +80,6 @@ class _SmsScreenState extends State<SmsScreen> with WidgetsBindingObserver {
             );
           }
           if (state is SmsLoadedState) {
-            log("NEW MESSAGE BUILDER : ${state.messages}");
             return Column(
               children: [
                 Padding(
