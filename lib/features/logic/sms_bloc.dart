@@ -91,6 +91,7 @@ class SmsBloc extends Bloc<SmsEvent, SmsState> {
   }
 
   void _receivedNewSms(NewSmsReceivedEvent event, Emitter<SmsState> emit) {
+    _messages.insert(0, event.message);
     final currentState = state;
     if (currentState is SmsLoadedState) {
       emit(currentState.copyWith(messages: [
